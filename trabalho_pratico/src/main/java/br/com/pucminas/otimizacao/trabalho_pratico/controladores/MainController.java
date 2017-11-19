@@ -28,10 +28,6 @@ public class MainController {
 		
 		modelMap.addAttribute("simplex", simplex);
         return "resposta";
-        
-//		ModelAndView model = new ModelAndView("resposta");
-//        model.addObject("hello", "hello");
-//        return "resposta";
 	}
 
 	private Simplex resolverProblema(Problema problema) {
@@ -49,15 +45,15 @@ public class MainController {
 			GLPK.glp_add_cols(lp, 2);
 			GLPK.glp_set_col_name(lp, 1, "x1");
 			GLPK.glp_set_col_kind(lp, 1, GLPKConstants.GLP_CV);
-			GLPK.glp_set_col_bnds(lp, 1, GLPKConstants.GLP_DB, 0, 0);
+			GLPK.glp_set_col_bnds(lp, 1, GLPKConstants.GLP_LO, 0, 0);
 			GLPK.glp_set_col_name(lp, 2, "x2");
 			GLPK.glp_set_col_kind(lp, 2, GLPKConstants.GLP_CV);
-			GLPK.glp_set_col_bnds(lp, 2, GLPKConstants.GLP_DB, 0, 0);
+			GLPK.glp_set_col_bnds(lp, 2, GLPKConstants.GLP_LO, 0, 0);
 
 			// Create constraints
 			GLPK.glp_add_rows(lp, 3);
 			GLPK.glp_set_row_name(lp, 1, "c1");
-			GLPK.glp_set_row_bnds(lp, 1, GLPKConstants.GLP_DB, 0, problema.getRestricao1().getTotal());
+			GLPK.glp_set_row_bnds(lp, 1, GLPKConstants.GLP_UP, 0, problema.getRestricao1().getTotal());
 			ind = GLPK.new_intArray(3);
 			GLPK.intArray_setitem(ind, 1, 1);
 			GLPK.intArray_setitem(ind, 2, 2);
@@ -67,7 +63,7 @@ public class MainController {
 			GLPK.glp_set_mat_row(lp, 1, 2, ind, val);
 
 			GLPK.glp_set_row_name(lp, 1, "c2");
-			GLPK.glp_set_row_bnds(lp, 1, GLPKConstants.GLP_DB, 0, problema.getRestricao2().getTotal());
+			GLPK.glp_set_row_bnds(lp, 1, GLPKConstants.GLP_UP, 0, problema.getRestricao2().getTotal());
 			ind = GLPK.new_intArray(3);
 			GLPK.intArray_setitem(ind, 1, 1);
 			GLPK.intArray_setitem(ind, 2, 2);
@@ -77,7 +73,7 @@ public class MainController {
 			GLPK.glp_set_mat_row(lp, 1, 2, ind, val);
 
 			GLPK.glp_set_row_name(lp, 1, "c3");
-			GLPK.glp_set_row_bnds(lp, 1, GLPKConstants.GLP_DB, 0, problema.getRestricao3().getTotal());
+			GLPK.glp_set_row_bnds(lp, 1, GLPKConstants.GLP_UP, 0, problema.getRestricao3().getTotal());
 			ind = GLPK.new_intArray(3);
 			GLPK.intArray_setitem(ind, 1, 1);
 			GLPK.intArray_setitem(ind, 2, 2);
@@ -117,7 +113,7 @@ public class MainController {
 						resolucao.setX1(GLPK.glp_get_col_prim(lp, i));
 						break;
 					case "x2":
-						resolucao.setX1(GLPK.glp_get_col_prim(lp, i));
+						resolucao.setX2(GLPK.glp_get_col_prim(lp, i));
 						break;
 					default:
 						break;
