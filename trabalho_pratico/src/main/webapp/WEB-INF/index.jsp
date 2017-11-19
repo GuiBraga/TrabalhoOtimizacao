@@ -8,7 +8,7 @@
     </div>
 
     <div align="center">
-      Escreva algo bonitinho
+      Esta aplica&ccedil&atildeo visa resolver o problema de Mix de Produ&ccedil&atildeo atrav&eacutes utilizando a biblioteca do GLPK
     </div>
 
     <div>
@@ -16,10 +16,10 @@
 
         <div align="center">
           <h3>Qual &eacute o objetivo?</h3>
-          <select id="objetivo" name="objetivo">
+          <select name="funcaoObjetiva.objetivo">
             <option value="">Selecione uma Op&ccedil&atildeo</option>
-            <option value="1">Minimizar</option>
-            <option value="2">Maximizar</option>
+            <option value="Minimizar">Minimizar</option>
+            <option value="Maximizar">Maximizar</option>
           </select>
         </div>
         <br>
@@ -29,10 +29,10 @@
           <h5>
             <b>Fun&ccedil&atildeo Objetiva</b>
           </h5>
-          <label>X =</label>
-          <input type="number" name="valorx" class="form-control" required/>
-          <label>Y =</label>
-          <input type="number" name="valory" class="form-control" required/>
+          <label>X1 =</label>
+          <input type="number" name="funcaoObjetiva.x1" class="form-control" required/>
+          <label>X2 =</label>
+          <input type="number" name="funcaoObjetiva.x2" class="form-control" required/>
         </div>
         <br>
 
@@ -40,52 +40,52 @@
           <h5>
             <b>Restri&ccedil&otildees</b>
           </h5>
-          <label>X =</label>
-          <input type="number" name="rest1x" class="form-control" required/>
-          <label>Y =</label>
-          <input type="number" name="rest1y" class="form-control" required/>
+          <label>X1 =</label>
+          <input type="number" name="restricao1.x1" class="form-control" required/>
+          <label>X2 =</label>
+          <input type="number" name="restricao1.x2" class="form-control" required/>
 
-          <select name="rest1ope">
+          <select name="restricao1.operador">
             <option value="">Selecione</option>
             <option value="menor">menor igual</option>
             <option value="maior">maior igual</option>
             <option value="igual">igual</option>
           </select>
 
-          <input type="number" name="totalrest1" class="form-control" required/>
+          <input type="number" name="restricao1.total" class="form-control" required/>
         </div>
 
         <div align="center">
-          <label>X =</label>
-          <input type="number" name="rest2x" class="form-control" required/>
-          <label>Y =</label>
-          <input type="number" name="rest2y" class="form-control" required/>
+          <label>X1 =</label>
+          <input type="number" name="restricao2.x1" class="form-control" required/>
+          <label>X2 =</label>
+          <input type="number" name="restricao2.x2" class="form-control" required/>
 
-          <select name="rest2ope">
+          <select name="restricao2.operador">
             <option value="">Selecione</option>
             <option value="menor">menor igual</option>
             <option value="maior">maior igual</option>
             <option value="igual">igual</option>
           </select>
 
-          <input type="number" name="totalrest2" class="form-control" required/>
+          <input type="number" name="restricao2.total" class="form-control" required/>
         </div>
 
 
         <div align="center">
-          <label>X =</label>
-          <input type="number" name="rest3x" class="form-control" required/>
-          <label>Y =</label>
-          <input type="number" name="rest3y" class="form-control" required/>
+          <label>X1 =</label>
+          <input type="number" name="restricao3.x1" class="form-control" required/>
+          <label>X2 =</label>
+          <input type="number" name="restricao3.x2" class="form-control" required/>
 
-          <select name="rest3ope">
+          <select name="restricao3.operador">
             <option value="">Selecione</option>
             <option value="menor">menor igual</option>
             <option value="maior">maior igual</option>
             <option value="igual">igual</option>
           </select>
 
-          <input type="number" name="totalrest3" class="form-control" required/>
+          <input type="number" name="restricao3.total" class="form-control" required/>
         </div>
 
         <div align="center">
