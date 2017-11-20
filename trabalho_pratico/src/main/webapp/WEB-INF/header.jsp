@@ -13,16 +13,50 @@
     input {
       width: 100px !important;
       display: inline-block !important;
+      text-align: center;
     }
 
     label {
       padding: 20px 10px 20px;
+      margin-right: 10px;
     }
 
     select {
       margin: 10px;
       padding: 5px;
+      font-family: Arial, Helvetica, san-serif;
+      font-size: 14px;
     }
+
+    .resultado{
+      background-color: #5bcf5938;
+      margin: 330px;
+      margin-top: 60px;
+      margin-bottom: 50px;
+      padding: 10px;
+    }
+    
+    .gerarNovo{
+    	margin-bottom: 100px;
+    }
+    
+    .objetivo {
+      background-color: #59bfcf38;
+      margin: 330px;
+      margin-top: 30px;
+      margin-bottom: 0px;
+      padding: 10px;
+    }
+
+    .variaveis {
+      padding-left: 180px;
+    }
+    
+    i{
+    	font-weight: normal;
+    }
+    
+
   </style>
 </head>
     
