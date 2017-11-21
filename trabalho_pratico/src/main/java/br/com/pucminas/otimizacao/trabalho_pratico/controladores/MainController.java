@@ -57,7 +57,19 @@ public class MainController {
 			// Create constraints
 			GLPK.glp_add_rows(problemaGLPK, 3);
 			GLPK.glp_set_row_name(problemaGLPK, 1, "c1");
-			GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_UP, 0, problema.getRestricao1().getTotal());
+			switch (problema.getRestricao1().getOperador()) {
+			case "menor":
+				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_UP, 0, problema.getRestricao1().getTotal());
+				break;
+			case "maior":
+				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_LO, 0, problema.getRestricao1().getTotal());
+				break;
+			case "igual":
+				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_FX, 0, problema.getRestricao1().getTotal());
+				break;
+			default:
+				break;
+			}
 			ind = GLPK.new_intArray(3);
 			GLPK.intArray_setitem(ind, 1, 1);
 			GLPK.intArray_setitem(ind, 2, 2);
@@ -67,7 +79,19 @@ public class MainController {
 			GLPK.glp_set_mat_row(problemaGLPK, 1, 2, ind, val);
 
 			GLPK.glp_set_row_name(problemaGLPK, 2, "c2");
-			GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_UP, 0, problema.getRestricao2().getTotal());
+			switch (problema.getRestricao2().getOperador()) {
+			case "menor":
+				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_UP, 0, problema.getRestricao2().getTotal());
+				break;
+			case "maior":
+				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_LO, 0, problema.getRestricao2().getTotal());
+				break;
+			case "igual":
+				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_FX, 0, problema.getRestricao2().getTotal());
+				break;
+			default:
+				break;
+			}
 			ind = GLPK.new_intArray(3);
 			GLPK.intArray_setitem(ind, 1, 1);
 			GLPK.intArray_setitem(ind, 2, 2);
@@ -77,7 +101,19 @@ public class MainController {
 			GLPK.glp_set_mat_row(problemaGLPK, 2, 2, ind, val);
 
 			GLPK.glp_set_row_name(problemaGLPK, 3, "c3");
-			GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_UP, 0, problema.getRestricao3().getTotal());
+			switch (problema.getRestricao3().getOperador()) {
+			case "menor":
+				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_UP, 0, problema.getRestricao3().getTotal());
+				break;
+			case "maior":
+				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_LO, 0, problema.getRestricao3().getTotal());
+				break;
+			case "igual":
+				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_FX, 0, problema.getRestricao3().getTotal());
+				break;
+			default:
+				break;
+			}
 			ind = GLPK.new_intArray(3);
 			GLPK.intArray_setitem(ind, 1, 1);
 			GLPK.intArray_setitem(ind, 2, 2);
@@ -108,7 +144,7 @@ public class MainController {
 				if (GLPK.glp_get_obj_name(problemaGLPK).equals("z")) {
 					double valor = GLPK.glp_get_obj_val(problemaGLPK);
 					DecimalFormat formato = new DecimalFormat("#.##");      
-					valor = Double.valueOf(formato.format(valor));
+					valor = Double.valueOf(formato.format(valor).replace(",", "."));
 					resolucao.setZ(valor);
 				}
 				for (int i = 1; i <= GLPK.glp_get_num_cols(problemaGLPK); i++) {
@@ -117,7 +153,7 @@ public class MainController {
 					System.out.println(GLPK.glp_get_col_prim(problemaGLPK, i));
 					double valor = GLPK.glp_get_col_prim(problemaGLPK, i);
 					DecimalFormat formato = new DecimalFormat("#.##");      
-					valor = Double.valueOf(formato.format(valor));
+					valor = Double.valueOf(formato.format(valor).replace(",", "."));
 					switch (GLPK.glp_get_col_name(problemaGLPK, i)) {
 					case "x1":
 						resolucao.setX1(valor);

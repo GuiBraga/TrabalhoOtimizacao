@@ -15,5 +15,8 @@ public class TrabalhoPraticoApplication extends SpringBootServletInitializer {
 
 	    public static void main(String[] args) throws Exception {
 	        SpringApplication.run(TrabalhoPraticoApplication.class, args);
+	        
+	        System.loadLibrary("glpk_4_63");
+			System.loadLibrary("glpk_4_63_java");
 	    }
 }
