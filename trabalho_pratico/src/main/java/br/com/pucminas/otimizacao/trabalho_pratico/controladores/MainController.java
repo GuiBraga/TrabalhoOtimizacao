@@ -54,15 +54,22 @@ public class MainController {
 			GLPK.glp_set_col_kind(problemaGLPK, 2, GLPKConstants.GLP_CV);
 			GLPK.glp_set_col_bnds(problemaGLPK, 2, GLPKConstants.GLP_LO, 0, 0);
 
+			
+            // Allocate memory
+            ind = GLPK.new_intArray(3);
+            val = GLPK.new_doubleArray(3);
+			
 			// Create constraints
 			GLPK.glp_add_rows(problemaGLPK, 3);
+			
+			
 			GLPK.glp_set_row_name(problemaGLPK, 1, "c1");
-			switch (problema.getRestricao1().getOperador().toLowerCase()) {
+			switch (problema.getRestricao1().getOperador()) {
 			case "menor":
-				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_UP, 0.0, problema.getRestricao1().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_UP, 0, problema.getRestricao1().getTotal());
 				break;
 			case "maior":
-				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_LO, 0.0, problema.getRestricao1().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_LO, 0, problema.getRestricao1().getTotal());
 				break;
 			case "igual":
 				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_FX, 0, problema.getRestricao1().getTotal());
@@ -70,72 +77,78 @@ public class MainController {
 			default:
 				break;
 			}
-			ind = GLPK.new_intArray(3);
+			//ind = GLPK.new_intArray(3);
 			GLPK.intArray_setitem(ind, 1, 1);
 			GLPK.intArray_setitem(ind, 2, 2);
-			val = GLPK.new_doubleArray(3);
+			//val = GLPK.new_doubleArray(3);
 			GLPK.doubleArray_setitem(val, 1, problema.getRestricao1().getX1());
 			GLPK.doubleArray_setitem(val, 2, problema.getRestricao1().getX2());
 			GLPK.glp_set_mat_row(problemaGLPK, 1, 2, ind, val);
 
 			GLPK.glp_set_row_name(problemaGLPK, 2, "c2");
-			switch (problema.getRestricao2().getOperador().toLowerCase()) {
+			switch (problema.getRestricao2().getOperador()) {
 			case "menor":
-				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_UP, 0.0, problema.getRestricao2().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_UP, 0, problema.getRestricao2().getTotal());
 				break;
 			case "maior":
-				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_LO, 0.0, problema.getRestricao2().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_LO, 0, problema.getRestricao2().getTotal());
 				break;
 			case "igual":
-				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_FX, 0.0, problema.getRestricao2().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_FX, 0, problema.getRestricao2().getTotal());
 				break;
 			default:
 				break;
 			}
-			ind = GLPK.new_intArray(3);
+			//ind = GLPK.new_intArray(3);
 			GLPK.intArray_setitem(ind, 1, 1);
 			GLPK.intArray_setitem(ind, 2, 2);
-			val = GLPK.new_doubleArray(3);
+			//val = GLPK.new_doubleArray(3);
 			GLPK.doubleArray_setitem(val, 1, problema.getRestricao2().getX1());
 			GLPK.doubleArray_setitem(val, 2, problema.getRestricao2().getX2());
 			GLPK.glp_set_mat_row(problemaGLPK, 2, 2, ind, val);
 
 			GLPK.glp_set_row_name(problemaGLPK, 3, "c3");
-			switch (problema.getRestricao3().getOperador().toLowerCase()) {
+			switch (problema.getRestricao3().getOperador()) {
 			case "menor":
-				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_UP, 0.0, problema.getRestricao3().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_UP, 0, problema.getRestricao3().getTotal());
 				break;
 			case "maior":
-				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_LO, 0.0, problema.getRestricao3().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_LO, 0, problema.getRestricao3().getTotal());
 				break;
 			case "igual":
-				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_FX, 0.0, problema.getRestricao3().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_FX, 0, problema.getRestricao3().getTotal());
 				break;
 			default:
 				break;
 			}
-			ind = GLPK.new_intArray(3);
+			//ind = GLPK.new_intArray(3);
 			GLPK.intArray_setitem(ind, 1, 1);
 			GLPK.intArray_setitem(ind, 2, 2);
-			val = GLPK.new_doubleArray(3);
+			//val = GLPK.new_doubleArray(3);
 			GLPK.doubleArray_setitem(val, 1, problema.getRestricao3().getX1());
 			GLPK.doubleArray_setitem(val, 2, problema.getRestricao3().getX2());
 			GLPK.glp_set_mat_row(problemaGLPK, 3, 2, ind, val);
 
+			
 			// Define objective
 			GLPK.glp_set_obj_name(problemaGLPK, "z");
 			if (problema.getFuncaoObjetiva().getObjetivo().toLowerCase().equals("maximizar")) {
 				GLPK.glp_set_obj_dir(problemaGLPK, GLPKConstants.GLP_MAX);
-			} else {
+			} 
+			if (problema.getFuncaoObjetiva().getObjetivo().toLowerCase().equals("minimizar")) {
 				GLPK.glp_set_obj_dir(problemaGLPK, GLPKConstants.GLP_MIN);
 			}
 			GLPK.glp_set_obj_coef(problemaGLPK, 0, 0);
 			GLPK.glp_set_obj_coef(problemaGLPK, 1, problema.getFuncaoObjetiva().getX1());
 			GLPK.glp_set_obj_coef(problemaGLPK, 2, problema.getFuncaoObjetiva().getX2());
+			
+			
 			// Solve model
 			parm = new glp_smcp();
 			GLPK.glp_init_smcp(parm);
 			ret = GLPK.glp_simplex(problemaGLPK, parm);
+			
+			
 			// Retrieve solution
 			if (ret == 0) {
 				System.out.print(GLPK.glp_get_obj_name(problemaGLPK));
