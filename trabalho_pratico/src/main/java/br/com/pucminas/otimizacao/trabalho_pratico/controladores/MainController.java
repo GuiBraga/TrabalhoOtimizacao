@@ -57,12 +57,12 @@ public class MainController {
 			// Create constraints
 			GLPK.glp_add_rows(problemaGLPK, 3);
 			GLPK.glp_set_row_name(problemaGLPK, 1, "c1");
-			switch (problema.getRestricao1().getOperador()) {
+			switch (problema.getRestricao1().getOperador().toLowerCase()) {
 			case "menor":
-				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_UP, 0, problema.getRestricao1().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_LO, 0, problema.getRestricao1().getTotal());
 				break;
 			case "maior":
-				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_LO, 0, problema.getRestricao1().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_UP, 0, problema.getRestricao1().getTotal());
 				break;
 			case "igual":
 				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_FX, 0, problema.getRestricao1().getTotal());
@@ -79,12 +79,12 @@ public class MainController {
 			GLPK.glp_set_mat_row(problemaGLPK, 1, 2, ind, val);
 
 			GLPK.glp_set_row_name(problemaGLPK, 2, "c2");
-			switch (problema.getRestricao2().getOperador()) {
+			switch (problema.getRestricao2().getOperador().toLowerCase()) {
 			case "menor":
-				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_UP, 0, problema.getRestricao2().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_LO, 0, problema.getRestricao2().getTotal());
 				break;
 			case "maior":
-				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_LO, 0, problema.getRestricao2().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_UP, 0, problema.getRestricao2().getTotal());
 				break;
 			case "igual":
 				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_FX, 0, problema.getRestricao2().getTotal());
@@ -101,12 +101,12 @@ public class MainController {
 			GLPK.glp_set_mat_row(problemaGLPK, 2, 2, ind, val);
 
 			GLPK.glp_set_row_name(problemaGLPK, 3, "c3");
-			switch (problema.getRestricao3().getOperador()) {
+			switch (problema.getRestricao3().getOperador().toLowerCase()) {
 			case "menor":
-				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_UP, 0, problema.getRestricao3().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_LO, 0, problema.getRestricao3().getTotal());
 				break;
 			case "maior":
-				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_LO, 0, problema.getRestricao3().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_UP, 0, problema.getRestricao3().getTotal());
 				break;
 			case "igual":
 				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_FX, 0, problema.getRestricao3().getTotal());
