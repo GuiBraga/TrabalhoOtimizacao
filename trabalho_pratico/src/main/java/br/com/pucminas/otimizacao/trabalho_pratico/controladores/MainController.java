@@ -69,11 +69,8 @@ public class MainController {
 				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_UP, 0, problema.getRestricao1().getTotal());
 				break;
 			case "maior":
-				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_LO, 0, problema.getRestricao1().getTotal());
-				break;
-			case "igual":
-				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_FX, 0, problema.getRestricao1().getTotal());
-				break;
+				GLPK.glp_set_row_bnds(problemaGLPK, 1, GLPKConstants.GLP_LO, problema.getRestricao1().getTotal(), 0);
+				break;			
 			default:
 				break;
 			}
@@ -91,10 +88,7 @@ public class MainController {
 				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_UP, 0, problema.getRestricao2().getTotal());
 				break;
 			case "maior":
-				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_LO, 0, problema.getRestricao2().getTotal());
-				break;
-			case "igual":
-				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_FX, 0, problema.getRestricao2().getTotal());
+				GLPK.glp_set_row_bnds(problemaGLPK, 2, GLPKConstants.GLP_LO, problema.getRestricao2().getTotal(), 0);
 				break;
 			default:
 				break;
@@ -113,11 +107,8 @@ public class MainController {
 				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_UP, 0, problema.getRestricao3().getTotal());
 				break;
 			case "maior":
-				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_LO, 0, problema.getRestricao3().getTotal());
-				break;
-			case "igual":
-				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_FX, 0, problema.getRestricao3().getTotal());
-				break;
+				GLPK.glp_set_row_bnds(problemaGLPK, 3, GLPKConstants.GLP_LO, problema.getRestricao3().getTotal(), 0);
+				break;			
 			default:
 				break;
 			}
@@ -128,8 +119,11 @@ public class MainController {
 			GLPK.doubleArray_setitem(val, 1, problema.getRestricao3().getX1());
 			GLPK.doubleArray_setitem(val, 2, problema.getRestricao3().getX2());
 			GLPK.glp_set_mat_row(problemaGLPK, 3, 2, ind, val);
-
 			
+			// Free memory
+    		GLPK.delete_intArray(ind);
+			GLPK.delete_doubleArray(val);
+						
 			// Define objective
 			GLPK.glp_set_obj_name(problemaGLPK, "z");
 			if (problema.getFuncaoObjetiva().getObjetivo().toLowerCase().equals("maximizar")) {
@@ -147,7 +141,7 @@ public class MainController {
 			parm = new glp_smcp();
 			GLPK.glp_init_smcp(parm);
 			ret = GLPK.glp_simplex(problemaGLPK, parm);
-			
+			GLPK.glp_term_out(1);
 			
 			// Retrieve solution
 			if (ret == 0) {

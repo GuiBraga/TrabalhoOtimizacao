@@ -51,7 +51,6 @@
             <option value="">Selecione</option>
             <option value="menor"> <= </option>
             <option value="maior"> >= </option>
-            <option value="igual"> = </option>
           </select>
 
           <input type="number" name="restricao1.total" class="form-control" placeholder="Disp." step="0.01" required/>
@@ -67,7 +66,6 @@
             <option value="">Selecione</option>
             <option value="menor"> <= </option>
             <option value="maior"> >= </option>
-            <option value="igual"> = </option>
           </select>
 
           <input type="number" name="restricao2.total" class="form-control" placeholder="Disp." step="0.01" required/>
@@ -84,7 +82,6 @@
             <option value="">Selecione</option>
             <option value="menor"> <= </option>
             <option value="maior"> >= </option>
-            <option value="igual"> = </option>
           </select>
 
           <input type="number" name="restricao3.total" class="form-control" placeholder="Disp." step="0.01" required/>
