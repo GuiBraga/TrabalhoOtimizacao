@@ -124,7 +124,7 @@ public class MainController {
 
 			// Define objective
 			GLPK.glp_set_obj_name(problemaGLPK, "z");
-			if (problema.getFuncaoObjetiva().getObjetivo().equals("Maximizar")) {
+			if (problema.getFuncaoObjetiva().getObjetivo().toLowerCase().equals("maximizar")) {
 				GLPK.glp_set_obj_dir(problemaGLPK, GLPKConstants.GLP_MAX);
 			} else {
 				GLPK.glp_set_obj_dir(problemaGLPK, GLPKConstants.GLP_MIN);

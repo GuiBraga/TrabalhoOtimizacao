@@ -8,7 +8,8 @@
     </div>
 
     <div align="center">
-      Esta aplica&ccedil&atildeo visa resolver o problema de Mix de Produ&ccedil&atildeo atrav&eacutes utilizando a biblioteca do GLPK
+      Esta aplica&ccedil&atildeo visa resolver o problema de Mix de Produ&ccedil&atildeo atrav&eacutes da utiliza&ccedil&atildeo
+      do m&eacutetodo simplex e da biblioteca do GLPK
     </div>
 
     <div>
@@ -18,8 +19,8 @@
           <h3>Qual &eacute o objetivo?</h3>
           <select name="funcaoObjetiva.objetivo" required>
             <option value="">Selecione uma Op&ccedil&atildeo</option>
-            <option value="Minimizar">Minimizar</option>
-            <option value="Maximizar">Maximizar</option>
+            <option value="minimizar">Minimizar</option>
+            <option value="maximizar">Maximizar</option>
           </select>
         </div>
         <br>
